@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://m74ly32vp120"]
+
+[ext_resource type="Script" uid="uid://dpp5rorshwr4q" path="res://scripts/player.gd" id="1_e232d"]
+[ext_resource type="PackedScene" uid="uid://dk5smby3jfv7k" path="res://assets/phaser.blend" id="2_7vjpr"]
+[ext_resource type="PackedScene" uid="uid://clrxkcv71xlym" path="res://assets/pack.blend" id="2_nvwnn"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2psjf"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_cegc5"]
+sky_material = SubResource("ProceduralSkyMaterial_2psjf")
+
+[sub_resource type="Environment" id="Environment_de8j7"]
+background_mode = 2
+sky = SubResource("Sky_cegc5")
+tonemap_mode = 2
+sdfgi_enabled = true
+glow_enabled = true
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qi1hx"]
+
+[node name="world" type="Node3D" unique_id=1216945559]
+
+[node name="stage" type="Node3D" parent="." unique_id=1561181817]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="stage" unique_id=657083508]
+transform = Transform3D(3.1264243, 0, 0, 0, 1, 0, 0, 0, 2.9053745, 0, -0.24967243, 0)
+use_collision = true
+size = Vector3(2.388916, 0.5, 2.3134766)
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="stage" unique_id=1313186815]
+transform = Transform3D(0.42291746, 0, 0, 0, 0.42291746, 0, 0, 0, 0.42291746, 0.29304913, 0.07196772, -0.40946043)
+radial_segments = 14
+rings = 10
+
+[node name="env" type="Node3D" parent="." unique_id=890693131]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="env" unique_id=44553935]
+transform = Transform3D(-0.7349146, -0.5202605, 0.4350053, 0, 0.64144963, 0.7671652, -0.6781597, 0.5638009, -0.4714107, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="env" unique_id=1035373205]
+environment = SubResource("Environment_de8j7")
+
+[node name="player" type="CharacterBody3D" parent="." unique_id=109199245]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9071567, 0.5364817)
+script = ExtResource("1_e232d")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="player" unique_id=502946548]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0093968, 0)
+shape = SubResource("CapsuleShape3D_qi1hx")
+
+[node name="pack" parent="player" unique_id=1763057097 instance=ExtResource("2_nvwnn")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.01978302, 0.92536366, 0.03996092)
+
+[node name="head" type="Node3D" parent="player" unique_id=584364790]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.810554, 0)
+
+[node name="Camera3D" type="Camera3D" parent="player/head" unique_id=514454867]
+current = true
+
+[node name="Node3D" type="Node3D" parent="player/head" unique_id=576695550]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.7177107, -0.5364817)
+
+[node name="phaser" parent="player/head" unique_id=936326049 instance=ExtResource("2_7vjpr")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.006543696, -0.5172043, -0.71134)
