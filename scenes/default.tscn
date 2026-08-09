@@ -1,8 +1,7 @@
 [gd_scene format=3 uid="uid://m74ly32vp120"]
 
-[ext_resource type="Script" uid="uid://dpp5rorshwr4q" path="res://scripts/player.gd" id="1_e232d"]
-[ext_resource type="PackedScene" uid="uid://dk5smby3jfv7k" path="res://assets/phaser.blend" id="2_7vjpr"]
-[ext_resource type="PackedScene" uid="uid://clrxkcv71xlym" path="res://assets/pack.blend" id="2_nvwnn"]
+[ext_resource type="PackedScene" uid="uid://cgacaftlj5m81" path="res://scenes/player/player.tscn" id="1_e232d"]
+[ext_resource type="PackedScene" uid="uid://daar14vjofde1" path="res://scenes/player/marine.tscn" id="2_7vjpr"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2psjf"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -15,10 +14,6 @@ sky_material = SubResource("ProceduralSkyMaterial_2psjf")
 background_mode = 2
 sky = SubResource("Sky_cegc5")
 tonemap_mode = 2
-sdfgi_enabled = true
-glow_enabled = true
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qi1hx"]
 
 [node name="world" type="Node3D" unique_id=1216945559]
 
@@ -37,31 +32,14 @@ rings = 10
 [node name="env" type="Node3D" parent="." unique_id=890693131]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="env" unique_id=44553935]
-transform = Transform3D(-0.7349146, -0.5202605, 0.4350053, 0, 0.64144963, 0.7671652, -0.6781597, 0.5638009, -0.4714107, 0, 0, 0)
+transform = Transform3D(-0.7349146, -0.5202605, 0.4350053, 0, 0.64144963, 0.7671652, -0.6781597, 0.5638009, -0.4714107, -1.0988927, 3.9005094, -3.2246997)
 shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="env" unique_id=1035373205]
 environment = SubResource("Environment_de8j7")
 
-[node name="player" type="CharacterBody3D" parent="." unique_id=109199245]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9071567, 0.5364817)
-script = ExtResource("1_e232d")
+[node name="Player" parent="." unique_id=1689906499 instance=ExtResource("1_e232d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8605045, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="player" unique_id=502946548]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0093968, 0)
-shape = SubResource("CapsuleShape3D_qi1hx")
-
-[node name="pack" parent="player" unique_id=1763057097 instance=ExtResource("2_nvwnn")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.01978302, 0.92536366, 0.03996092)
-
-[node name="head" type="Node3D" parent="player" unique_id=584364790]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.810554, 0)
-
-[node name="Camera3D" type="Camera3D" parent="player/head" unique_id=514454867]
-current = true
-
-[node name="Node3D" type="Node3D" parent="player/head" unique_id=576695550]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.7177107, -0.5364817)
-
-[node name="phaser" parent="player/head" unique_id=936326049 instance=ExtResource("2_7vjpr")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.006543696, -0.5172043, -0.71134)
+[node name="Marine" parent="." unique_id=1224554299 instance=ExtResource("2_7vjpr")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 1.2490286, -2.5067542)

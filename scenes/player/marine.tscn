@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://daar14vjofde1"]
+
+[ext_resource type="Script" uid="uid://cwgc3ty0qx2jp" path="res://scripts/entities/marine.gd" id="1_c5q6y"]
+[ext_resource type="PackedScene" uid="uid://clrxkcv71xlym" path="res://assets/pack.blend" id="1_ham5w"]
+[ext_resource type="PackedScene" uid="uid://dk5smby3jfv7k" path="res://assets/phaser.blend" id="2_0h5x2"]
+[ext_resource type="PackedScene" uid="uid://y5ubmlnrhw5h" path="res://scenes/player/sensor.tscn" id="3_0h5x2"]
+
+[node name="Marine" type="Node3D" unique_id=1224554299 node_paths=PackedStringArray("phaser")]
+script = ExtResource("1_c5q6y")
+phaser = NodePath("phaser")
+
+[node name="pack" parent="." unique_id=1799955804 instance=ExtResource("1_ham5w")]
+
+[node name="phaser" parent="." unique_id=1241578926 instance=ExtResource("2_0h5x2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.51832855, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="phaser" unique_id=510724397]
+
+[node name="sensorphaser" parent="phaser" unique_id=1363262977 instance=ExtResource("3_0h5x2")]
+
+[node name="sensorleftshoulder" parent="." unique_id=1507888585 instance=ExtResource("3_0h5x2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.02229543, 0.26125875, 0.34093997)
+
+[node name="sensorrightshoulder" parent="." unique_id=2083265261 instance=ExtResource("3_0h5x2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2649037, -0.33005127)
+
+[node name="sensorback" parent="." unique_id=1551142475 instance=ExtResource("3_0h5x2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.14092283, -0.089405715, 0)
+
+[node name="sensorfront" parent="." unique_id=786357286 instance=ExtResource("3_0h5x2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17087603, -0.102675796, 0)

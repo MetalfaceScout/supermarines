@@ -1,3 +1,4 @@
+
 extends CharacterBody3D
 
 #TODO: Should only be able to sprint when overall velocity is forward, no sprinting to the side
@@ -12,15 +13,35 @@ const JUMP_VELOCITY = 4.5
 
 @export var current_speed = 5.0
 @export var mouse_sensitivity = 0.1
+@export var marine: Marine3D
+
+func shoot():
+	
+	#Enable shapecast for some amount of time
+	#After cast is done, iterate and see if we hit any pack sensors
+	marine.shoot()
+	var object = $head/playerShapecast.get_collider(0)
+	print(object)
+	print($head/playerShapecast.get_collision_count())
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	#Set collision layer of player's sensors to 4 to avoid shooting self
+	var sensors = marine.getAllSensors()
+	for sensor: IREmitter3D in sensors:
+		sensor.setCollisonMask(4)
 	
 func _unhandled_input(event: InputEvent) -> void:
+	
+	# Handle mouse input
 	if event is InputEventMouseMotion:
 		rotate_y(deg_to_rad(-event.relative.x * mouse_sensitivity))
 		head.rotate_x(deg_to_rad(-event.relative.y * mouse_sensitivity))
 		head.rotation.x = clamp(head.rotation.x, deg_to_rad(-85), deg_to_rad(85))
+		
+	#Handle shoot input
+	if event.is_action_pressed("Shoot"):
+		shoot()
 
 func _physics_process(delta: float) -> void:
 	
