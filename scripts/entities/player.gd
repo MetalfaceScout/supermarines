@@ -4,6 +4,7 @@ extends CharacterBody3D
 #TODO: Should only be able to sprint when overall velocity is forward, no sprinting to the side
 
 @onready var head: Node3D = $head
+@onready var shapecast: ShapeCast3D = $head/playerShapecast
 
 const SPRINT_SPEED = 7.0
 const RUN_SPEED = 5.0
@@ -16,21 +17,31 @@ const JUMP_VELOCITY = 4.5
 @export var marine: Marine3D
 
 func shoot():
-	
-	#Enable shapecast for some amount of time
-	#After cast is done, iterate and see if we hit any pack sensors
-	marine.shoot()
-	var object = $head/playerShapecast.get_collider(0)
-	print(object)
-	print($head/playerShapecast.get_collision_count())
+
+	# The marine's current state decides whether a shot goes out at all --
+	# a deactivated or dead pack returns false and we never cast.
+	if not marine.shoot():
+		return
+
+	shapecast.force_shapecast_update()
+	for i in shapecast.get_collision_count():
+		var collider := shapecast.get_collider(i) as Node
+		if collider == null:
+			continue
+		# The shapecast hits the sensor's Area3D; the sensor itself is its parent.
+		var sensor := collider.get_parent() as IREmitter3D
+		if sensor != null:
+			sensor.tag(self)
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	#Set collision layer of player's sensors to 4 to avoid shooting self
-	var sensors = marine.getAllSensors()
-	for sensor: IREmitter3D in sensors:
-		sensor.setCollisonMask(4)
-	
+	for sensor in marine.sensors:
+		sensor.set_active_layer(4)
+
+	#TODO: a round manager should own this once one exists
+	marine.activate()
+
 func _unhandled_input(event: InputEvent) -> void:
 	
 	# Handle mouse input

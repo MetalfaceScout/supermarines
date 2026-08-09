@@ -14,32 +14,39 @@ sky_material = SubResource("ProceduralSkyMaterial_2psjf")
 background_mode = 2
 sky = SubResource("Sky_cegc5")
 tonemap_mode = 2
+glow_enabled = true
 
 [node name="world" type="Node3D" unique_id=1216945559]
 
 [node name="stage" type="Node3D" parent="." unique_id=1561181817]
 
 [node name="CSGBox3D" type="CSGBox3D" parent="stage" unique_id=657083508]
-transform = Transform3D(3.1264243, 0, 0, 0, 1, 0, 0, 0, 2.9053745, 0, -0.24967243, 0)
+transform = Transform3D(5.140348, 0, 0, 0, 1, 0, 0, 0, 5.4679875, 0, -0.24967243, 0)
 use_collision = true
 size = Vector3(2.388916, 0.5, 2.3134766)
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="stage" unique_id=1313186815]
-transform = Transform3D(0.42291746, 0, 0, 0, 0.42291746, 0, 0, 0, 0.42291746, 0.29304913, 0.07196772, -0.40946043)
+transform = Transform3D(0.42291746, 0, 0, 0, 0.42291746, 0, 0, 0, 0.42291746, 0.29304913, 0.3836606, -0.40946043)
 radial_segments = 14
 rings = 10
 
 [node name="env" type="Node3D" parent="." unique_id=890693131]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="env" unique_id=44553935]
-transform = Transform3D(-0.7349146, -0.5202605, 0.4350053, 0, 0.64144963, 0.7671652, -0.6781597, 0.5638009, -0.4714107, -1.0988927, 3.9005094, -3.2246997)
+transform = Transform3D(-0.7349146, -0.5202605, 0.4350053, 0, 0.64144963, 0.7671652, -0.6781597, 0.5638009, -0.4714107, -3.2310843, 4.574188, -6.2953987)
+light_color = Color(0.6256375, 0.24350682, 0.84549344, 1)
+light_energy = 0.366
 shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="env" unique_id=1035373205]
 environment = SubResource("Environment_de8j7")
 
+[node name="AreaLight3D" type="AreaLight3D" parent="env" unique_id=1530684767]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -2.2874527, 2.6096523, -3.1421554)
+light_color = Color(0.52510184, 0.18756422, 0.769975, 1)
+
 [node name="Player" parent="." unique_id=1689906499 instance=ExtResource("1_e232d")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8605045, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0025091171, 0.86050475, 0.0046885014)
 
 [node name="Marine" parent="." unique_id=1224554299 instance=ExtResource("2_7vjpr")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 1.2490286, -2.5067542)

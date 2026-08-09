@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://c1esa2xg58vkp"]
+
+[ext_resource type="PackedScene" uid="uid://y5ubmlnrhw5h" path="res://scenes/player/sensor.tscn" id="1_eej1x"]
+[ext_resource type="PackedScene" uid="uid://dk5smby3jfv7k" path="res://assets/phaser.blend" id="2_wnb0b"]
+[ext_resource type="Script" uid="uid://6ey25xh1g35r" path="res://scripts/entities/phaser/phaser.gd" id="3_xag3p"]
+[ext_resource type="Script" uid="uid://bu748aqm77g6r" path="res://scripts/entities/phaser/barrellight.gd" id="4_xag3p"]
+
+[node name="Phaser" type="Node3D" unique_id=678657841]
+script = ExtResource("3_xag3p")
+
+[node name="sensorphaser" parent="." unique_id=1363262977 instance=ExtResource("1_eej1x")]
+
+[node name="phaser" parent="." unique_id=1357469871 instance=ExtResource("2_wnb0b")]
+
+[node name="phaserlights" type="Node3D" parent="." unique_id=581897048]
+
+[node name="barrellight" type="OmniLight3D" parent="phaserlights" unique_id=121301254]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2322689, 0.0323378, 0)
+distance_fade_enabled = true
+script = ExtResource("4_xag3p")
