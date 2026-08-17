@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="MarinePosition" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/positions/marine_position.gd" id="1_pos"]
+[ext_resource type="Resource" path="res://resources/abilities/rapid_fire.tres" id="2_rapid"]
+
+[resource]
+script = ExtResource("1_pos")
+display_name = "Scout"
+team_slots = 2
+shot_cooldown = 0.25
+armor = 0
+lives_max = 15
+shots_max = 40
+starting_lives = 8
+starting_shots = 20
+resupply_lives = 0
+resupply_shots = 0
+special_points = 30
+special_ability = ExtResource("2_rapid")

@@ -54,12 +54,18 @@ func start() -> void:
 
 ## Force a switch from outside -- e.g. a game manager activating every pack at
 ## the start of a round.
-func transition_to(next_state_name: StringName, data: Dictionary = {}) -> void:
+##
+## [param allow_reenter] re-runs exit() and enter() even when the machine is already
+## in that state, which is how a timer gets restarted -- a nuke extending the
+## downtime of someone already sitting out a respawn. It is off by default because
+## most re-entries are accidental and destructive: re-entering Activated would hand
+## the marine a fresh set of armor.
+func transition_to(next_state_name: StringName, data: Dictionary = {}, allow_reenter := false) -> void:
 	var next: State = _states.get(next_state_name)
 	if next == null:
 		push_error("StateMachine: no state named '%s'." % next_state_name)
 		return
-	if next == current_state:
+	if next == current_state and not allow_reenter:
 		return
 	_switch_to(next, current_state.name if current_state else &"", data)
 

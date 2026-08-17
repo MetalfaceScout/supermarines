@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dk5smby3jfv7k" path="res://assets/phaser.blend" id="2_wnb0b"]
 [ext_resource type="Script" uid="uid://6ey25xh1g35r" path="res://scripts/entities/phaser/phaser.gd" id="3_xag3p"]
 [ext_resource type="Script" uid="uid://bu748aqm77g6r" path="res://scripts/entities/phaser/barrellight.gd" id="4_xag3p"]
+[ext_resource type="Script" uid="uid://cn4vp2xtq8bm3" path="res://scripts/entities/phaser/material_flash.gd" id="5_mflsh"]
 
 [node name="Phaser" type="Node3D" unique_id=678657841]
 script = ExtResource("3_xag3p")
@@ -18,3 +19,7 @@ script = ExtResource("3_xag3p")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2322689, 0.0323378, 0)
 distance_fade_enabled = true
 script = ExtResource("4_xag3p")
+
+[node name="barrelglow" type="Node" parent="." unique_id=1092837465 node_paths=PackedStringArray("mesh_root")]
+script = ExtResource("5_mflsh")
+mesh_root = NodePath("../phaser")

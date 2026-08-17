@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="MarinePosition" format=3 uid="uid://cjp6l35b63i2i"]
+
+[ext_resource type="Script" uid="uid://bd68xmr77tmbx" path="res://scripts/positions/marine_position.gd" id="1_pos"]
+[ext_resource type="Script" uid="uid://bd0h3t6uj3t6" path="res://scripts/entities/special_abilites/nuke.gd" id="2_idreo"]
+
+[sub_resource type="Resource" id="Resource_nbube"]
+script = ExtResource("2_idreo")
+displayname = "Nuke"
+special_points_cost = 10
+cancel_on_deactivate = true
+charge_time = 6.0
+lives_taken = 3
+deactivate_duration = 5.0
+metadata/_custom_type_script = "uid://bd0h3t6uj3t6"
+
+[resource]
+script = ExtResource("1_pos")
+display_name = "Commander"
+shot_cooldown = 0.4
+armor = 3
+shot_power = 2
+lives_max = 30
+shots_max = 60
+starting_lives = 15
+starting_shots = 30
+resupply_shots = 5
+missiles_max = 5
+special_points = 30
+special_ability = SubResource("Resource_nbube")

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="MarinePosition" format=3 uid="uid://dxfprx8r1oo5w"]
+
+[ext_resource type="Script" uid="uid://bd68xmr77tmbx" path="res://scripts/positions/marine_position.gd" id="1_pos"]
+
+[resource]
+script = ExtResource("1_pos")
+display_name = "Medic"
+shots_max = 30
+starting_lives = 20
+starting_shots = 15
+resupply_lives = 10
+resupply_shots = 0
+can_give_lives = true

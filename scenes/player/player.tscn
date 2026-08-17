@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://daar14vjofde1" path="res://scenes/player/marine.tscn" id="1_8afob"]
 [ext_resource type="Script" uid="uid://dpp5rorshwr4q" path="res://scripts/entities/player.gd" id="1_dovo2"]
 [ext_resource type="PackedScene" uid="uid://c1esa2xg58vkp" path="res://scenes/player/phaser.tscn" id="3_gmlin"]
+[ext_resource type="Resource" path="res://resources/positions/scout.tres" id="3_lvxji"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dovo2"]
 
@@ -22,6 +23,7 @@ shape = SubResource("CapsuleShape3D_dovo2")
 
 [node name="Marine" parent="CharacterBody3D" unique_id=1224554299 instance=ExtResource("1_8afob")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0.3691704, 0)
+marine_position = ExtResource("3_lvxji")
 
 [node name="head" type="Node3D" parent="CharacterBody3D" unique_id=1321342932]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.96914566, 0)

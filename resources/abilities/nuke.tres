@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Nuke" format=3 uid="uid://b60hs5mt2ado7"]
+
+[ext_resource type="Script" uid="uid://bd0h3t6uj3t6" path="res://scripts/entities/special_abilites/nuke.gd" id="1_ui530"]
+
+[resource]
+script = ExtResource("1_ui530")
+displayname = "Nuke"
+special_points_cost = 20
+cancel_on_deactivate = true

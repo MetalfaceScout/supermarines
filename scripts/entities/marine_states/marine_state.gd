@@ -22,3 +22,7 @@ func shoot() -> bool:
 ## Default: ignore it, the pack is not live.
 func take_hit(_source: Node) -> void:
 	pass
+
+## We're trying to use a special ability
+func use_special() -> void:
+	pass

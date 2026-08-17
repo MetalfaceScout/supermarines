@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="RapidFire" format=3 uid="uid://c8lilqmo3g215"]
+
+[ext_resource type="Script" uid="uid://db5kuk1xcfxl6" path="res://scripts/entities/special_abilites/rapid_fire.gd" id="1_rapid"]
+
+[resource]
+script = ExtResource("1_rapid")
+displayname = "Rapid Fire"
+metadata/_custom_type_script = "uid://db5kuk1xcfxl6"

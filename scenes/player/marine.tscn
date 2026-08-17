@@ -2,14 +2,18 @@
 
 [ext_resource type="Script" uid="uid://cwgc3ty0qx2jp" path="res://scripts/entities/marine.gd" id="1_c5q6y"]
 [ext_resource type="PackedScene" uid="uid://clrxkcv71xlym" path="res://assets/pack.blend" id="1_ham5w"]
+[ext_resource type="Resource" path="res://resources/positions/scout.tres" id="2_nbube"]
 [ext_resource type="PackedScene" uid="uid://y5ubmlnrhw5h" path="res://scenes/player/sensor.tscn" id="3_0h5x2"]
 [ext_resource type="Script" uid="uid://b5t2cbp0moc4q" path="res://scripts/state_machine/state_machine.gd" id="4_smach"]
 [ext_resource type="Script" uid="uid://dhelkscosyq3t" path="res://scripts/entities/marine_states/marine_deactivated.gd" id="5_deact"]
 [ext_resource type="Script" uid="uid://ch8nyid8012w8" path="res://scripts/entities/marine_states/marine_activated.gd" id="6_activ"]
 [ext_resource type="Script" uid="uid://c8rkwqnw8hvop" path="res://scripts/entities/marine_states/marine_dead.gd" id="7_dead"]
+[ext_resource type="Script" uid="uid://clpmyxxrmotko" path="res://scripts/entities/special_abilites/special_ability_runner.gd" id="9_nbube"]
+[ext_resource type="Script" path="res://scripts/entities/pack/pack_lights.gd" id="10_packl"]
 
 [node name="Marine" type="Node3D" unique_id=1224554299]
 script = ExtResource("1_c5q6y")
+marine_position = ExtResource("2_nbube")
 
 [node name="pack" parent="." unique_id=1799955804 instance=ExtResource("1_ham5w")]
 
@@ -26,6 +30,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.14092283, -0.089405715, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17087603, -0.102675796, 0)
 
 [node name="packlights" type="Node3D" parent="." unique_id=2004254228]
+script = ExtResource("10_packl")
+
+[node name="packlight" type="OmniLight3D" parent="packlights" unique_id=1284410021]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+light_energy = 0.0
+omni_range = 3.0
 
 [node name="StateMachine" type="Node" parent="." unique_id=1541147159 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("4_smach")
@@ -39,3 +49,7 @@ script = ExtResource("6_activ")
 
 [node name="Dead" type="Node" parent="StateMachine" unique_id=1669780113]
 script = ExtResource("7_dead")
+
+[node name="SpecialAbilityRunner" type="Node" parent="." unique_id=1547035544 node_paths=PackedStringArray("marine")]
+script = ExtResource("9_nbube")
+marine = NodePath("..")

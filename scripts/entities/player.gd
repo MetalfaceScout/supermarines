@@ -31,7 +31,12 @@ func shoot():
 		# The shapecast hits the sensor's Area3D; the sensor itself is its parent.
 		var sensor := collider.get_parent() as IREmitter3D
 		if sensor != null:
-			sensor.tag(self)
+			# The marine, not this body: the receiving end reads the shooter's
+			# shot_power off their position to decide how much armor the tag eats.
+			sensor.tag(marine)
+
+func special():
+	marine.use_special()
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -50,12 +55,24 @@ func _unhandled_input(event: InputEvent) -> void:
 		head.rotate_x(deg_to_rad(-event.relative.y * mouse_sensitivity))
 		head.rotation.x = clamp(head.rotation.x, deg_to_rad(-85), deg_to_rad(85))
 		
-	#Handle shoot input
-	if event.is_action_pressed("Shoot"):
+	#Handle special
+	if event.is_action_pressed("Activate Special"):
+		special()
+
+## Trigger handling is polled rather than event-driven so full auto is a one-word
+## change: held versus just-pressed. Firing every physics tick is safe -- the
+## marine's shot cooldown throws away everything it is too early for, so the
+## cooldown stays the single source of truth on rate of fire.
+func _handle_trigger() -> void:
+	var pulled := Input.is_action_pressed("Shoot") if marine.full_auto \
+		else Input.is_action_just_pressed("Shoot")
+	if pulled:
 		shoot()
 
 func _physics_process(delta: float) -> void:
-	
+
+	_handle_trigger()
+
 	if Input.is_action_pressed("Crouch"):
 		current_speed = CROUCH_SPEED
 	else:

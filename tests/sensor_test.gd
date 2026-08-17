@@ -27,6 +27,12 @@ func _run() -> void:
 		print("    %-22s enabled=%s layer=%d" % [s.name, s.is_enabled(), layer_of(s)])
 
 	print("\n=== 3. tagging the phaser sensor costs a life ===")
+	# Pin Scout (armor 0) and re-enter Activated so armor is refreshed from the
+	# new position. This test is about sensor routing, not armor -- the scene
+	# default is Commander, whose armor would soak the first tag.
+	marine.apply_position(load("res://resources/positions/scout.tres"))
+	marine.deactivate()
+	marine.activate()
 	var before: int = marine.lives
 	phaser_sensor.tag(null)
 	print("  lives %d -> %d   (expect a drop)" % [before, marine.lives])
